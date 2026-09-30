@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewAI — Mock Interview Simulator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVBAR                        -->
+    <!-- ============================= -->
+
+    <header class="nav">
+        <div class="nav-inner">
+            <button class="brand" id="brandButton" aria-label="Go to home">
+                <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h3l2-6 4 12 2-6h5"/></svg>
+                </span>
+                InterviewAI
+            </button>
+            <span class="nav-badge">Version 1</span>
+        </div>
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- LANDING SCREEN                -->
+    <!-- ============================= -->
+
+    <main id="welcomeScreen" class="screen">
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                <span class="dot"></span>
+                Runs entirely in your browser
+            </div>
+
+            <h1>AI-Style Mock<br>Interview Simulator</h1>
+
+            <p class="hero-sub">
+                Practice realistic interviews. Get instant feedback.
+                Improve with every attempt.
+            </p>
+
+            <div class="hero-actions">
+                <button id="startButton" class="btn btn-primary btn-lg">
+                    Start Interview
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <a href="#how" class="btn btn-ghost btn-lg">How It Works</a>
+            </div>
+
+            <!-- Workflow visual -->
+            <div class="flow" aria-label="Interview workflow">
+                <div class="flow-step"><span>01</span>Role</div>
+                <div class="flow-line"></div>
+                <div class="flow-step"><span>02</span>Question</div>
+                <div class="flow-line"></div>
+                <div class="flow-step"><span>03</span>Answer</div>
+                <div class="flow-line"></div>
+                <div class="flow-step"><span>04</span>Evaluation</div>
+                <div class="flow-line"></div>
+                <div class="flow-step is-accent"><span>05</span>Feedback</div>
+            </div>
+
+        </section>
+
+        <!-- How it works -->
+        <section id="how" class="how">
+
+            <p class="section-label">How it works</p>
+            <h2 class="section-title">A focused interview, scored instantly.</h2>
+
+            <div class="how-grid">
+
+                <div class="how-card">
+                    <div class="how-num">01</div>
+                    <h3>Choose a role</h3>
+                    <p>Pick an interview track. Each session has five role-specific questions.</p>
+                </div>
+
+                <div class="how-card">
+                    <div class="how-num">02</div>
+                    <h3>Answer under time</h3>
+                    <p>You get 45 seconds per question — just like a real interview round.</p>
+                </div>
+
+                <div class="how-card">
+                    <div class="how-num">03</div>
+                    <h3>Get scored</h3>
+                    <p>Answers are evaluated on length <b>(40%)</b> and keyword coverage <b>(60%)</b>.</p>
+                </div>
+
+                <div class="how-card">
+                    <div class="how-num">04</div>
+                    <h3>Review &amp; retry</h3>
+                    <p>See strengths, gaps and a full performance report. Then try again.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            InterviewAI · Web Technology PBL · Built with HTML, CSS &amp; JavaScript
+        </footer>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- ROLE SELECTION SCREEN         -->
+    <!-- ============================= -->
+
+    <main id="roleScreen" class="screen hidden">
+
+        <section class="container narrow">
+
+            <button class="back-link" id="roleBackButton">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                Back
+            </button>
+
+            <p class="section-label">Step 1 of 2</p>
+            <h2 class="section-title">Select your interview session</h2>
+            <p class="section-sub">Choose the role you are preparing for. You can retry with a different role anytime.</p>
+
+            <!-- Role cards are generated by script.js -->
+            <div id="roleGrid" class="role-grid"></div>
+
+            <div class="role-footer">
+                <div class="role-meta">
+                    <span><b>5</b> questions</span>
+                    <span class="sep"></span>
+                    <span><b>45s</b> per question</span>
+                    <span class="sep"></span>
+                    <span>Instant feedback</span>
+                </div>
+                <button id="beginButton" class="btn btn-primary" disabled>
+                    Begin Interview
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- INTERVIEW SCREEN              -->
+    <!-- ============================= -->
+
+    <main id="interviewScreen" class="screen hidden">
+
+        <section class="container interview">
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+
+                <div class="session">
+                    <span class="live-dot"></span>
+                    <span id="roleTitle">Software Engineer</span>
+                    <span class="muted">Interview</span>
+                </div>
+
+                <div class="top-right">
+                    <span class="q-count">
+                        Question
+                        <b id="questionNumber">1</b>
+                        /
+                        <span id="totalQuestions">5</span>
+                    </span>
+
+                    <div class="timer" id="timerBox">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
+                        <span id="timer">45</span>s
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Progress steps (generated by script.js) -->
+            <div id="progressSteps" class="steps"></div>
+
+            <!-- Timer bar -->
+            <div class="timer-bar">
+                <div id="timerProgress"></div>
+            </div>
+
+            <!-- Question -->
+            <div class="question-card">
+                <p class="question-label">Interview Question</p>
+                <h2 id="questionText">Tell me about yourself.</h2>
+            </div>
+
+            <!-- Answer -->
+            <div class="answer-section">
+
+                <label for="answerInput">Your answer</label>
+
+                <textarea id="answerInput" placeholder="Structure your answer clearly. Mention key concepts and a practical example…" maxlength="1000"></textarea>
+
+                <div class="answer-info">
+                    <span><span id="characterCount">0</span> / 1000 characters</span>
+                    <span>Recommended: 150+ characters</span>
+                </div>
+
+            </div>
+
+            <!-- Submit -->
+            <div class="actions">
+                <button id="submitButton" class="btn btn-primary">
+                    Submit Answer
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+
+            <!-- Feedback -->
+            <div id="feedbackBox" class="feedback hidden">
+
+                <div class="feedback-head">
+                    <div>
+                        <p class="section-label">Instant feedback</p>
+                        <h3>Answer evaluation</h3>
+                    </div>
+                    <button id="nextButton" class="btn btn-primary">
+                        Next Question
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                </div>
+
+                <div id="feedbackContent"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- RESULT SCREEN                 -->
+    <!-- ============================= -->
+
+    <main id="resultScreen" class="screen hidden">
+
+        <section class="container dashboard">
+
+            <!-- Header -->
+            <div class="result-header">
+                <div>
+                    <p class="section-label">Interview complete</p>
+                    <h2 class="section-title">Performance report</h2>
+                    <p class="section-sub" id="resultRole">Software Engineer · 5 questions</p>
+                </div>
+                <button id="retryButton" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                    Retry Interview
+                </button>
+            </div>
+
+            <!-- Top row -->
+            <div class="dash-grid">
+
+                <!-- Main Score -->
+                <div class="panel score-panel">
+
+                    <div class="ring ring-lg" id="finalRing" style="--p:0">
+                        <div class="ring-inner">
+                            <span id="finalScore">0</span>
+                            <small>/ 100</small>
+                        </div>
+                    </div>
+
+                    <div class="score-meta">
+                        <p class="panel-label">Overall score</p>
+                        <h3 id="readinessText">Interview Ready</h3>
+                        <p id="recommendationText" class="muted-text">
+                            Keep practicing to improve your interview performance.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats">
+
+                    <div class="panel stat">
+                        <p class="panel-label">Average score</p>
+                        <strong id="averageScore">0%</strong>
+                        <div class="mini-bar"><div id="averageBar"></div></div>
+                    </div>
+
+                    <div class="panel stat">
+                        <p class="panel-label">Keyword match</p>
+                        <strong id="keywordScore">0%</strong>
+                        <div class="mini-bar"><div id="keywordBar"></div></div>
+                    </div>
+
+                    <div class="panel stat">
+                        <p class="panel-label">Questions answered</p>
+                        <strong id="answeredQuestions">0</strong>
+                        <p class="stat-foot">45s time limit each</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Performance Section -->
+            <div class="panel performance-section">
+
+                <div class="section-heading">
+                    <h3>Question performance</h3>
+                    <span>Score breakdown</span>
+                </div>
+
+                <div id="questionResults"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
