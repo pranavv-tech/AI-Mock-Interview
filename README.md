@@ -1,2 +1,1 @@
-# AI-Mock-Interview
-A web-based AI-style mock interview simulator for interview practice, answer evaluation, instant feedback, and performance analysis.
+A modern web-based AI-style mock interview simulator that transforms interview preparation into an interactive practice experience. Users can select a role, answer timed interview questions, receive rule-based evaluation based on answer length and keyword matching, and instantly view personalized feedback and performance insights. Built with HTML, CSS, and JavaScript, Version 1 focuses on a lightweight, responsive, and user-friendly interview workflow without requiring a backend or external AI API.
